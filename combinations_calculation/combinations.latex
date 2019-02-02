@@ -1,0 +1,46 @@
+\documentclass[swedish]{article}
+\usepackage[swedish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\begin{document}
+
+\title{Poff — Antal möjliga spelpositioner}
+\author{Erik Göransson}
+\maketitle
+
+Av spelets regler framgår att varje hand kan vara i fem olika lägen (1, 2, 3, 4 eller 5). Låt oss kalla denna siffra $A$. $A^2$ ger då antalet möjliga kombinatoner av två händer — en spelare.
+
+\begin{table}[h]
+\centering
+\caption{Möjliga kombinationer för en spelare, $A = 3$}
+\label{tbl:combinations}
+\begin{tabular}{l}
+\textbf{1, 1} \\
+1, 2          \\
+1, 3          \\
+2, 1          \\
+\textbf{2, 2} \\
+2, 3          \\
+3, 1          \\
+3, 2          \\
+\textbf{3, 3}
+\end{tabular}
+\end{table}
+
+I \cref{tbl:combinations} ser vi dessa kombinationer för $A = 3$. Med undantag av de fetmarkerade positionerna har varje kombination en spegelbild (t.ex. 1, 2 och 2, 1) som, på grund av vår design, kan tas bort. Ur \cref{tbl:combinations} framgår att antalet positioner som har en spegelvänd dublett kan skrivas som $A^2 - A$. Genom att ta bort hälften av dessa minimeras antalet nödvändiga lådor. I vårt fall kan även kombinationen (5, 5) tas bort, då spelet per definition är slut när den existerar och inga vidare drag kan göras. Det totala antalet olika positioner en spelare kan vara i är alltså lika med 
+
+\begin{equation*}
+A^2 - \frac{A^2 - A}{2} - 1
+\end{equation*}
+
+Spelet har två spelare som båda kan befinna sig i alla dessa positioner. Därför ges det totala antalet lägen spelet kan befinna sig i av 
+
+\begin{equation*}
+\left(A^2 - \frac{A^2 - A}{2} - 1 \right)^2
+\end{equation*}
+
+Om detta uttryck utvärderas för $A = 5$ ges 196 olika spellägen, vilket stämmer överens med antalet genererat av programmet använt för simulatorn.
+\end{document}
